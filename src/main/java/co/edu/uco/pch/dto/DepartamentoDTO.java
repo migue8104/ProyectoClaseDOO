@@ -2,6 +2,8 @@ package co.edu.uco.pch.dto;
 
 import java.util.UUID;
 
+import co.edu.uco.pch.crosscutting.helpers.TextHelper;
+
 public final class DepartamentoDTO {
 	private UUID id;
 	private String nombre;
@@ -32,7 +34,7 @@ public final class DepartamentoDTO {
 		return nombre;
 	}
 	public final  DepartamentoDTO setNombre(final String nombre) {
-		this.nombre = nombre;
+		this.nombre = TextHelper.applyTrim(nombre);
 		return this;
 	}
 	public final PaisDTO getPais() {
