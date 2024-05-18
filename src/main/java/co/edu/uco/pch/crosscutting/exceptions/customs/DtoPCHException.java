@@ -12,6 +12,11 @@ public final class DtoPCHException extends PCHException {
 
 	}
 	
+	public DtoPCHException(final String mensajeTecnico, final String mensajeUsuario) {
+		super(mensajeTecnico, mensajeUsuario, Lugar.BUSINESS);
+	}
+	
+	
 	public DtoPCHException(final String mensajeTecnico,final String mensajeUsuario,final  Lugar lugar,Throwable excepcionRaiz) {
 		super(mensajeTecnico,mensajeUsuario, Lugar.DATA,excepcionRaiz);
 

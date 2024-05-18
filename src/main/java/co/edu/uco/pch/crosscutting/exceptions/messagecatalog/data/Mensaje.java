@@ -27,7 +27,7 @@ public final class Mensaje {
 	}
 
 
-	private final TipoMensaje getTipo() {
+	public final TipoMensaje getTipo() {
 		return getCodigo().getTipo();
 	}
 

@@ -61,7 +61,8 @@ public final class MessageCatalogBase implements MessageCatalog {
 				"Se ha presentado un problema tratando de iniciar una transacción SQL con la fuente de información deseada..."));
 		mensajes.put(CodigoMensaje.M00022.getIdentificador(), new Mensaje(CodigoMensaje.M00022,
 				"Se ha presentado un problema INESPERADO tratando de iniciar una transacción SQL con la fuente de información deseada..."));
-		
+		mensajes.put(CodigoMensaje.M00023.getIdentificador(),new Mensaje(CodigoMensaje.M00023,
+				"se ha presentado un prblema tratando de crear la ciudad \"${1}\" y si el problemas contacte a el administrador ..." ));
 	}
 
 	@Override
