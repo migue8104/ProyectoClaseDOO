@@ -2,6 +2,7 @@ package co.edu.uco.pch.entity;
 
 import java.util.UUID;
 
+import co.edu.uco.pch.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.pch.crosscutting.helpers.TextHelper;
 
 public final class DepartamentoEntity {
@@ -41,7 +42,7 @@ public final class DepartamentoEntity {
 		return pais;
 	}
 	public final  DepartamentoEntity setPais(final PaisEntity pais) {
-		this.pais = pais;
+		this.pais = ObjectHelper.getObjectHelper().getDefaultValue(pais, new PaisEntity());
 		return this;
 	}
 

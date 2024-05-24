@@ -13,6 +13,10 @@ public class UUIDHelper {
 		super();
 	}
 	
+	public static final UUID convertToUUID(final String uuidAsString) {
+		return UUID.fromString(uuidAsString);
+	}
+	
 	public static UUID generarUUIDDefecto() {
         return new UUID(0L, 0L);
     }
@@ -20,6 +24,14 @@ public class UUIDHelper {
 	public static UUID convertirStringaUUID(String uuidString) {
             return UUID.fromString(uuidString);        
     }
+	
+	public static final UUID getDefault(final UUID value, final UUID defaultValue) {
+		return ObjectHelper.getObjectHelper().getDefaultValue(value, defaultValue);
+	}
+	
+	public static final UUID getDefault() {
+		return convertToUUID(DEFAULD_UUID_STRING);
+	}
 	
 	public static UUID generate() {
 		Random random = new Random();
@@ -30,6 +42,11 @@ public class UUIDHelper {
 	
 	public static final UUID getDefauld(final UUID value, final UUID valorDefecto) {		
 		return ObjectHelper.getObjectHelper().getDefaultValue(value, valorDefecto);
+	}
+	
+
+	public static final boolean isDefault(final UUID value) {
+		return getDefault(value, getDefault()).equals(getDefault());
 	}
 	
 	

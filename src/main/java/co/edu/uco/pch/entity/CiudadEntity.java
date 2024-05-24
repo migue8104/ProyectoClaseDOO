@@ -2,6 +2,7 @@ package co.edu.uco.pch.entity;
 
 import java.util.UUID;
 
+import co.edu.uco.pch.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.pch.crosscutting.helpers.TextHelper;
 
 public final class CiudadEntity {
@@ -40,7 +41,7 @@ public final class CiudadEntity {
 		return Departamento;
 	}
 	public final  CiudadEntity  setDepartamento(final DepartamentoEntity departamento) {
-		Departamento = departamento;
+		this.Departamento = ObjectHelper.getObjectHelper().getDefaultValue(departamento, new DepartamentoEntity());
 		return this;
 	}
 
