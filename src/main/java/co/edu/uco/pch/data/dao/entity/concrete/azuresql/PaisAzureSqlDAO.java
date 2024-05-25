@@ -40,7 +40,7 @@ public class PaisAzureSqlDAO extends SqlConnection implements PaisDAO{
 
 		    final List<PaisEntity> paises = new ArrayList<>();
 
-		    try (final PreparedStatement sentenciaSqlPreparada = getConnection()
+		    try (final PreparedStatement sentenciaSqlPreparada = getConexion()
 		            .prepareStatement(sentenciaSql.toString())) {
 
 		        int index = 1;

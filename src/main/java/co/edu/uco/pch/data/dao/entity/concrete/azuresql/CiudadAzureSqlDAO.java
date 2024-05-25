@@ -33,7 +33,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 		sentenciaSQL.append("SELECT ?,?,?");
 	
 		
-		try (final PreparedStatement sentenciaSQLPreparada = getConnection().prepareStatement(sentenciaSQL.toString())){
+		try (final PreparedStatement sentenciaSQLPreparada = getConexion().prepareStatement(sentenciaSQL.toString())){
 			sentenciaSQLPreparada.setObject(1,data.getId() );
 			sentenciaSQLPreparada.setString(2, data.getNombre());
 			sentenciaSQLPreparada.setObject(3, data.getDepartamento().getId());
@@ -76,7 +76,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 	    }
 	    final List<CiudadEntity> ciudades = new ArrayList<>();
 
-	    try (final PreparedStatement sentenciaSqlPreparada = getConnection()
+	    try (final PreparedStatement sentenciaSqlPreparada = getConexion()
 	            .prepareStatement(sentenciaSql.toString())) {
 
 	        for (int i = 0; i < parametros.size(); i++) {
@@ -119,7 +119,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 		
 		sentenciaSQL.append("DELETE FROM Ciudad WHERE id = ?");
 		
-		try (final PreparedStatement sentenciaSQLPreparada = getConnection().prepareStatement(sentenciaSQL.toString())){
+		try (final PreparedStatement sentenciaSQLPreparada = getConexion().prepareStatement(sentenciaSQL.toString())){
 			sentenciaSQLPreparada.setObject(1, id);
 			
 			sentenciaSQLPreparada.executeUpdate();
@@ -150,7 +150,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 
 	
 		
-		try (final PreparedStatement sentenciaSQLPreparada = getConnection().prepareStatement(sentenciaSQL.toString())){
+		try (final PreparedStatement sentenciaSQLPreparada = getConexion().prepareStatement(sentenciaSQL.toString())){
 			sentenciaSQLPreparada.setObject(3,data.getId() );
 			sentenciaSQLPreparada.setString(1, data.getNombre());
 			sentenciaSQLPreparada.setObject(2, data.getDepartamento().getId());

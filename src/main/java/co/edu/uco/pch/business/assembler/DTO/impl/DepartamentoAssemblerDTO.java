@@ -6,7 +6,9 @@ import co.edu.uco.pch.business.domain.PaisDomain;
 import co.edu.uco.pch.dto.DepartamentoDTO;
 import co.edu.uco.pch.dto.PaisDTO;
 
-import static co.edu.uco.pch.crosscutting.helpers.ObjectHelper.getObjectHelper;;
+import static co.edu.uco.pch.crosscutting.helpers.ObjectHelper.getObjectHelper;
+
+import java.util.List;;
 
 public class DepartamentoAssemblerDTO implements AssemblerDTO<DepartamentoDomain, DepartamentoDTO>{
 
@@ -32,6 +34,18 @@ public class DepartamentoAssemblerDTO implements AssemblerDTO<DepartamentoDomain
 		var departamentoDomainTmp = getObjectHelper().getDefaultValue(domain, DepartamentoDomain.build());
 		var paisDTO = paisAssembler.toDTO(departamentoDomainTmp.getPais());
 		return DepartamentoDTO.build().setId(departamentoDomainTmp.getId()).setNombre(departamentoDomainTmp.getNombre()).setPais(paisDTO);
+	}
+
+	@Override
+	public List<DepartamentoDomain> toDomainCollection(List<DepartamentoDTO> entityCollection) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DepartamentoDTO> toDTOCollection(List<DepartamentoDomain> domainCollection) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

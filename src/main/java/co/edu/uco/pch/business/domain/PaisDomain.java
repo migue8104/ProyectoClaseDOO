@@ -24,7 +24,7 @@ public final class PaisDomain {
 	}
 	
 	public static PaisDomain build() {
-		return new PaisDomain(UUIDHelper.getDefauld(),TextHelper.EMPTY);
+		return new PaisDomain(UUIDHelper.getDefault(),TextHelper.EMPTY);
 	}
 	
 	public final UUID getId() {
@@ -34,7 +34,7 @@ public final class PaisDomain {
 		return nombre;
 	}
 	private final void setId(final UUID id) {
-		this.id = UUIDHelper.getDefauld(id, UUIDHelper.getDefauld());
+		this.id = UUIDHelper.getDefault(id, UUIDHelper.getDefault());
 	}
 	private final void setNombre(final String nombre) {
 		this.nombre = nombre;

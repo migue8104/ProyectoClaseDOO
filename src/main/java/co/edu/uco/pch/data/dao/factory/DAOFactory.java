@@ -5,13 +5,12 @@ import co.edu.uco.pch.data.dao.entity.DepartamentoDAO;
 import co.edu.uco.pch.data.dao.entity.PaisDAO;
 import co.edu.uco.pch.data.dao.factory.concrete.AzureSQLDAOFactory;
 
+
 public interface DAOFactory {
 
 	static DAOFactory getFactory() {
 		return new AzureSQLDAOFactory();
 	}
-
-	void abrirConexion();
 
 	void cerrarConexion();
 
@@ -27,4 +26,3 @@ public interface DAOFactory {
 
 	CiudadDAO getCiudadDAO();
 }
-

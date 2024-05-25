@@ -3,6 +3,9 @@ package co.edu.uco.pch.business.assembler.entity.impl;
 import co.edu.uco.pch.business.assembler.entity.AssemblerEntity;
 import co.edu.uco.pch.business.domain.PaisDomain;
 import static co.edu.uco.pch.crosscutting.helpers.ObjectHelper.getObjectHelper;
+
+import java.util.List;
+
 import co.edu.uco.pch.entity.PaisEntity;
 
 public class PaisAssemblerEntity implements AssemblerEntity<PaisDomain, PaisEntity> {
@@ -27,6 +30,12 @@ public class PaisAssemblerEntity implements AssemblerEntity<PaisDomain, PaisEnti
 		var paisDomainTmp = getObjectHelper().getDefaultValue(domain, PaisDomain.build());
 		// TODO Auto-generated method stub
 		return PaisEntity.build().setId(paisDomainTmp.getId()).setNombre(paisDomainTmp.getNombre());
+	}
+
+	@Override
+	public List<PaisDomain> toDomainCollection(List<PaisEntity> entityCollection) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

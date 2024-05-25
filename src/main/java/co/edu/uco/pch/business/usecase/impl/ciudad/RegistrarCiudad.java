@@ -50,11 +50,12 @@ public final class RegistrarCiudad implements UseCaseWithoutReturn<CiudadDomain>
 	private final UUID generarIdentificadorCiudad() {
 		UUID id = UUIDHelper.generate();
 		boolean existeId = true;
+
 		while (existeId) {
 			id = UUIDHelper.generate();
 			var ciudadEntity = CiudadEntity.build().setId(id);
-		var resultados = factory.getCiudadDAO().consultar(null);
-		existeId = !resultados.isEmpty();
+			var resultados = factory.getCiudadDAO().consultar(ciudadEntity);
+			existeId = !resultados.isEmpty();
 		}
 		return id;
 	}

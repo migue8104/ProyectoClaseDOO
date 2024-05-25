@@ -28,7 +28,7 @@ public class CiudadDomain {
 	}
 	
 	public static CiudadDomain build() {
-		return new CiudadDomain(UUIDHelper.getDefauld(),TextHelper.EMPTY, DepartamentoDomain.build());
+		return new CiudadDomain(UUIDHelper.getDefault(),TextHelper.EMPTY, DepartamentoDomain.build());
 	}
 	
 	private final void setId(UUID id) {

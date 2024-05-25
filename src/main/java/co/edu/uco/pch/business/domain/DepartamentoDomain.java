@@ -27,7 +27,7 @@ public class DepartamentoDomain {
 	}
 	
 	public static final DepartamentoDomain build() {
-		return new DepartamentoDomain(UUIDHelper.getDefauld(),TextHelper.EMPTY,PaisDomain.build());
+		return new DepartamentoDomain(UUIDHelper.getDefault(),TextHelper.EMPTY,PaisDomain.build());
 	}
 	
 	private final void setId(UUID id) {
