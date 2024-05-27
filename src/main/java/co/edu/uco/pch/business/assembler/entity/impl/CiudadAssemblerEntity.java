@@ -46,10 +46,17 @@ public class CiudadAssemblerEntity implements AssemblerEntity<CiudadDomain, Ciud
 				new ArrayList<CiudadEntity>());
 
 		return entityCollectionTmp.stream().map(this::toDomain).toList();
-
-		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<CiudadEntity> toEntityCollection(List<CiudadDomain> domainCollection) {
+		var domainCollectionTmp = ObjectHelper.getObjectHelper().getDefaultValue(domainCollection,
+				new ArrayList<CiudadDomain>());
+		return domainCollectionTmp.stream().map(this::toEntity).toList();
+	}
+	
+
 	
 	
 

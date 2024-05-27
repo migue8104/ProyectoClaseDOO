@@ -1,9 +1,11 @@
 package co.edu.uco.pch.business.assembler.entity.impl;
 
+import co.com.park.gp.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.pch.business.assembler.entity.AssemblerEntity;
 import co.edu.uco.pch.business.domain.PaisDomain;
 import static co.edu.uco.pch.crosscutting.helpers.ObjectHelper.getObjectHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.uco.pch.entity.PaisEntity;
@@ -34,8 +36,16 @@ public class PaisAssemblerEntity implements AssemblerEntity<PaisDomain, PaisEnti
 
 	@Override
 	public List<PaisDomain> toDomainCollection(List<PaisEntity> entityCollection) {
-		// TODO Auto-generated method stub
-		return null;
+		var entityCollectionTmp = ObjectHelper.getObjectHelper().getDefaultValue(entityCollection,
+				new ArrayList<PaisEntity>());
+		return entityCollectionTmp.stream().map(this::toDomain).toList();
+	}
+
+	@Override
+	public List<PaisEntity> toEntityCollection(List<PaisDomain> domainCollection) {
+		var domainCollectionTmp = ObjectHelper.getObjectHelper().getDefaultValue(domainCollection,
+				new ArrayList<PaisDomain>());
+		return domainCollectionTmp.stream().map(this::toEntity).toList();
 	}
 
 }

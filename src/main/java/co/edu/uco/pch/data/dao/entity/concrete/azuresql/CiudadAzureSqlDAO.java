@@ -56,9 +56,15 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 	}
 
 	@Override
-	public List<CiudadEntity> consultar(CiudadEntity data) {
+	public List<CiudadEntity> consultar(final CiudadEntity data) {
+
 	    final StringBuilder sentenciaSql = new StringBuilder();
-	    sentenciaSql.append("SELECT id, nombre, departamento FROM Ciudad WHERE 1=1");
+	    sentenciaSql.append("SELECT c.id, c.nombre, d.id as idDepartamento, d.nombre as nombreDepartamento, p.id as idPais, p.nombre as nombrePais");
+	    sentenciaSql.append(" FROM Ciudad c");
+	    sentenciaSql.append(" INNER JOIN Departamento d ON c.departamento = d.id");
+	    sentenciaSql.append(" INNER JOIN Pais p ON d.pais = p.id");
+	    sentenciaSql.append(" WHERE 1=1");
+
 
 	    final List<Object> parametros = new ArrayList<>();
 
@@ -74,6 +80,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 	        sentenciaSql.append(" AND departamento = ?");
 	        parametros.add(data.getDepartamento().getId());
 	    }
+
 	    final List<CiudadEntity> ciudades = new ArrayList<>();
 
 	    try (final PreparedStatement sentenciaSqlPreparada = getConexion()
@@ -94,7 +101,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 	                ciudades.add(ciudad);
 	            }
 	        }
-	        
+
 	    } catch (final SQLException excepcion) {
 	        var mensajeUsuario = "Se ha presentado un problema tratando de consultar las ciudades. Por favor, contacte al administrador del sistema.";
 	        var mensajeTecnico = "Se ha presentado una SQLException tratando de realizar la consulta de las ciudades en la tabla \"Ciudad\" de la base de datos Azure SQL.";
@@ -108,9 +115,7 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 	        throw new DataPCHException(mensajeUsuario, mensajeTecnico, excepcion);
 	    }
 
-
-
-		return ciudades;
+	    return ciudades;
 	}
 
 	@Override
@@ -172,6 +177,8 @@ public final class CiudadAzureSqlDAO extends SqlConnection implements CiudadDAO{
 	}
 	
 	}
+	
+	
 	
 }
 	

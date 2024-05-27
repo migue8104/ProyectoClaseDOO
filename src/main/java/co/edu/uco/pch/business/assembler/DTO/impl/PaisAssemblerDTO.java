@@ -2,10 +2,12 @@ package co.edu.uco.pch.business.assembler.DTO.impl;
 
 import co.edu.uco.pch.business.assembler.DTO.AssemblerDTO;
 import co.edu.uco.pch.business.domain.PaisDomain;
+import co.edu.uco.pch.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.pch.dto.PaisDTO;
 
 import static co.edu.uco.pch.crosscutting.helpers.ObjectHelper.getObjectHelper;
 
+import java.util.ArrayList;
 import java.util.List;;
 
 public final class PaisAssemblerDTO implements AssemblerDTO<PaisDomain, PaisDTO>{
@@ -35,15 +37,15 @@ public final class PaisAssemblerDTO implements AssemblerDTO<PaisDomain, PaisDTO>
 	}
 
 	@Override
-	public List<PaisDomain> toDomainCollection(List<PaisDTO> entityCollection) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PaisDomain> toDomainCollection(List<PaisDTO> dtoCollection) {
+		var dtoCollectionTmp = ObjectHelper.getObjectHelper().getDefaultValue(dtoCollection, new ArrayList<PaisDTO>());
+		return dtoCollectionTmp.stream().map(this :: toDomain).toList();
 	}
 
 	@Override
 	public List<PaisDTO> toDTOCollection(List<PaisDomain> domainCollection) {
-		// TODO Auto-generated method stub
-		return null;
+		var domainCollectionTmp = ObjectHelper.getObjectHelper().getDefaultValue(domainCollection, new ArrayList<PaisDomain>());
+		return domainCollectionTmp.stream().map(this :: toDTO).toList();
 	}
 
 }

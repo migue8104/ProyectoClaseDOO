@@ -8,6 +8,7 @@ import co.edu.uco.pch.crosscutting.exceptions.customs.DataPCHException;
 import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
 import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.pch.crosscutting.helpers.SQLHelper;
+import co.edu.uco.pch.crosscutting.helpers.UUIDHelper;
 import co.edu.uco.pch.data.dao.entity.CiudadDAO;
 import co.edu.uco.pch.data.dao.entity.DepartamentoDAO;
 import co.edu.uco.pch.data.dao.entity.PaisDAO;
@@ -16,6 +17,8 @@ import co.edu.uco.pch.data.dao.entity.concrete.azuresql.CiudadAzureSqlDAO;
 import co.edu.uco.pch.data.dao.entity.concrete.azuresql.DepartamentoAzureSqlDAO;
 import co.edu.uco.pch.data.dao.entity.concrete.azuresql.PaisAzureSqlDAO;
 import co.edu.uco.pch.data.dao.factory.DAOFactory;
+import co.edu.uco.pch.entity.CiudadEntity;
+import co.edu.uco.pch.entity.DepartamentoEntity;
 
 public final class AzureSQLDAOFactory extends SqlConnection implements DAOFactory {
 
@@ -81,6 +84,9 @@ public final class AzureSQLDAOFactory extends SqlConnection implements DAOFactor
 	@Override
 	public CiudadDAO getCiudadDAO() {
 		return new CiudadAzureSqlDAO(getConexion());
+	}
+	
+}
 	}
 	
 	
