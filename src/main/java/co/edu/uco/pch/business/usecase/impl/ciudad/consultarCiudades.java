@@ -6,6 +6,8 @@ import co.edu.uco.pch.business.assembler.entity.impl.CiudadAssemblerEntity;
 import co.edu.uco.pch.business.domain.CiudadDomain;
 import co.edu.uco.pch.business.usecase.UseCaseWithReturn;
 import co.edu.uco.pch.crosscutting.exceptions.customs.BusinessPCHException;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.pch.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.pch.data.dao.factory.DAOFactory;
 
@@ -15,8 +17,8 @@ private DAOFactory factory;
 	
 	public consultarCiudades(final DAOFactory factory) {
 		if (ObjectHelper.getObjectHelper().isNull(factory)) {
-			var mensajeUsuario= "se ha presentado un problema tratando de llevar a cabo la consulta de las ciudades";
-			var mensajeTecnico = "el DAOfactoty para consultar las ciudades llego nulo...";
+			var mensajeUsuario= MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00025);
+			var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00029);
 			throw new BusinessPCHException(mensajeTecnico, mensajeUsuario);
 		}
 		this.factory= factory;

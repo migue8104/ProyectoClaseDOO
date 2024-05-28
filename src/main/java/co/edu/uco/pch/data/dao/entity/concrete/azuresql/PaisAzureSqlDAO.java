@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.pch.crosscutting.exceptions.customs.DataPCHException;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.pch.crosscutting.helpers.TextHelper;
 import co.edu.uco.pch.data.dao.entity.PaisDAO;
 import co.edu.uco.pch.data.dao.entity.concrete.SqlConnection;
@@ -64,14 +66,14 @@ public class PaisAzureSqlDAO extends SqlConnection implements PaisDAO{
 		        }
 
 		    } catch (final SQLException excepcion) {
-		        var mensajeUsuario = "Se ha presentado un problema tratando de consultar los países. Por favor, contacte al administrador del sistema.";
-		        var mensajeTecnico = "Se ha presentado una SQLException tratando de realizar la consulta de los países en la tabla \"Pais\" de la base de datos Azure SQL.";
+		        var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00050);
+		        var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00051);
 
 		        throw new DataPCHException(mensajeUsuario, mensajeTecnico, excepcion);
 
 		    } catch (final Exception excepcion) {
-		        var mensajeUsuario = "Se ha presentado un problema tratando de consultar los países. Por favor, contacte al administrador del sistema.";
-		        var mensajeTecnico = "Se ha presentado un problema INESPERADO con una excepción de tipo Exception tratando de realizar la consulta de los países en la tabla \"Pais\" de la base de datos Azure SQL.";
+		        var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00050);
+		        var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00051);
 
 		        throw new DataPCHException(mensajeUsuario, mensajeTecnico, excepcion);
 		    }

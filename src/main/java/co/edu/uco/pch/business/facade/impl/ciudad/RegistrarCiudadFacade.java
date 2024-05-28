@@ -5,6 +5,8 @@ import co.edu.uco.pch.business.facade.FacadeWithoutReturn;
 import co.edu.uco.pch.business.usecase.impl.ciudad.RegistrarCiudad;
 import co.edu.uco.pch.crosscutting.exceptions.PCHException;
 import co.edu.uco.pch.crosscutting.exceptions.customs.BusinessPCHException;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.pch.data.dao.factory.DAOFactory;
 import co.edu.uco.pch.dto.CiudadDTO;
 
@@ -32,8 +34,8 @@ public class RegistrarCiudadFacade implements FacadeWithoutReturn<CiudadDTO> {
 		} catch (final Exception exception) {
 			daoFactory.cancelarTransaccion();
 
-			var mensajeUsuario = "Se ha presentado un problema registrando la informacion de la ciudad";
-			var mensajeTecnico = "Se ha presentado un problema INESPERADO tratando de registrar la ciudad";
+			var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00027);
+			var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00028);
 
 			throw new BusinessPCHException(mensajeTecnico, mensajeUsuario, exception);
 

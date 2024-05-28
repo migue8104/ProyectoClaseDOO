@@ -17,6 +17,8 @@ import co.edu.uco.pch.business.facade.impl.ciudad.ConsultarCiudadesFacade;
 import co.edu.uco.pch.business.facade.impl.ciudad.RegistrarCiudadFacade;
 import co.edu.uco.pch.controller.response.CiudadResponse;
 import co.edu.uco.pch.crosscutting.exceptions.PCHException;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
+import co.edu.uco.pch.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.pch.dto.CiudadDTO;
 
 @RestController
@@ -42,7 +44,7 @@ public final class CiudadController {
 			var facade = new ConsultarCiudadesFacade();
 			
 			ciudadResponse.setDatos(facade.execute(ciudadDto));
-			ciudadResponse.getMensajes().add("ciudades consultadas exitosamente");
+			ciudadResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00031));
 			
 		}catch(final PCHException excepcion) {
 			httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -51,7 +53,7 @@ public final class CiudadController {
 		}catch(final Exception excepcion) {
 			httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			
-			var mensajeUsuario = "se ha presentado un prblema tratando de consultar";
+			var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00025);
 			ciudadResponse.getMensajes().add(mensajeUsuario);
 			
 			excepcion.printStackTrace();
@@ -70,7 +72,7 @@ public ResponseEntity<CiudadResponse> crear(@RequestBody CiudadDTO ciudad){
 		try {
 			var facade = new RegistrarCiudadFacade();
 			facade.execute(ciudad);
-			ciudadResponse.getMensajes().add("ciudades creada exitosamente");
+			ciudadResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00041));
 			
 		}catch(final PCHException excepcion) {
 			httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -79,7 +81,7 @@ public ResponseEntity<CiudadResponse> crear(@RequestBody CiudadDTO ciudad){
 		}catch(final Exception excepcion) {
 			httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			
-			var mensajeUsuario = "se ha presentado un prblema tratando de registar la nueva ciudad";
+			var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00027);
 			ciudadResponse.getMensajes().add(mensajeUsuario);
 			
 			excepcion.printStackTrace();
@@ -100,7 +102,7 @@ public ResponseEntity<CiudadResponse> eliminar(@PathVariable UUID  id){
 		try {
 			//var facade = new EliminarCiudadFacade();
 			//facade.execute(id);
-			ciudadResponse.getMensajes().add("ciudades eliminadas exitosamente");
+			ciudadResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00042));
 			
 		}catch(final PCHException excepcion) {
 			httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -109,7 +111,7 @@ public ResponseEntity<CiudadResponse> eliminar(@PathVariable UUID  id){
 		}catch(final Exception excepcion) {
 			httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			
-			var mensajeUsuario = "se ha presentado un prblema tratando de eliminar la nueva ciudad";
+			var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00043);
 			ciudadResponse.getMensajes().add(mensajeUsuario);
 			
 			excepcion.printStackTrace();
@@ -131,7 +133,7 @@ public ResponseEntity<CiudadResponse> modificar(@PathVariable UUID  id,@RequestB
 		ciudadDTO.setId(id);
 		//var facade = new EliminarCiudadFacade();
 		//facade.execute(id);
-		ciudadResponse.getMensajes().add("ciudades modificadas exitosamente");
+		ciudadResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00044));
 		
 	}catch(final PCHException excepcion) {
 		httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -140,7 +142,7 @@ public ResponseEntity<CiudadResponse> modificar(@PathVariable UUID  id,@RequestB
 	}catch(final Exception excepcion) {
 		httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 		
-		var mensajeUsuario = "se ha presentado un prblema tratando de modificar la nueva ciudad";
+		var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00045) ;
 		ciudadResponse.getMensajes().add(mensajeUsuario);
 		
 		excepcion.printStackTrace();
